@@ -17,7 +17,7 @@ const I18N = {
 
   // html lang 屬性值
   HTML_LANG: {
-    zh: "zh-CN",
+    zh: "zh-Hant",
     en: "en",
     ru: "ru",
     uz: "uz"

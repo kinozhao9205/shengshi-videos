@@ -60,7 +60,7 @@
   function applyStaticText() {
     const ui = I18N.UI[lang] || I18N.UI.zh;
 
-    document.documentElement.lang = I18N.HTML_LANG[lang] || 'zh-CN';
+    document.documentElement.lang = I18N.HTML_LANG[lang] || 'zh-Hant';
     document.title = ui.title || document.title;
     searchInput.placeholder = ui.searchPlaceholder || searchInput.placeholder;
 
