@@ -70,7 +70,7 @@ const VIDEOS = [
   },
   {
     id: "v07",
-    src: "videos/v07.mp4?v=1",
+    src: "videos/v07.mp4?v=2",
     poster: "posters/p07.jpg",
     title: "仰望 · 應急浮水體驗",
     desc: "突破場地限制，盛世迭代研發、精密運營，爲品牌實現2000㎡“山海”沉浸場景的高效落地，稀缺體驗驅動UGC內容，爲全網刷新“極致安全”與“極致性能”的豪華標準。",
@@ -79,7 +79,7 @@ const VIDEOS = [
   },
   {
     id: "v08",
-    src: "videos/v08.mp4?v=1",
+    src: "videos/v08.mp4?v=2",
     poster: "posters/p08.jpg",
     title: "方程豹 · 騰勢 · 仰望外場混剪",
     desc: "盛世爲三大品牌分別定製外場方案並完成全流程落地，配合不同品牌的調性、週期與營銷節奏，完成獨立的品牌表達，同時統一於集團營銷框架，以成熟的IP矩陣積累線下口碑。",
