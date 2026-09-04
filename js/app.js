@@ -1,6 +1,6 @@
 /**
  * SHENGSHI CASE — 盛世推廣案例視頻集 應用主邏輯
- * 視頻畫廊 · 搜索 · 分類篩選 · 播放器 · 轉發分享 · 防下載 · 多語言（中/英/俄/烏茲別克）
+ * 視頻畫廊 · 搜索 · 分類篩選 · 播放器 · 轉發分享 · 防下載 · 多語言（中/英/烏茲別克）
  */
 
 (function () {
@@ -79,10 +79,10 @@
   }
 
   // --- 語言切換 ---
-  // 同步所有語言按鈕的高亮狀態（Hero 按鈕組 + 右下角浮動按鈕）
+  // 同步語言切換器按鈕的高亮狀態
   function syncLangButtons() {
-    document.querySelectorAll('.lang-pick').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
+    document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
     });
   }
 
@@ -105,9 +105,9 @@
     }
   }
 
-  // 綁定所有語言按鈕（Hero + 浮動兩處共用 .lang-pick）
-  document.querySelectorAll('.lang-pick').forEach(btn => {
-    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  // 綁定語言切換器按鈕
+  document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang-btn')));
   });
 
   // --- 獲取分類 ---
