@@ -62,7 +62,7 @@
 
     document.documentElement.lang = I18N.HTML_LANG[lang] || 'zh-Hant';
     document.title = ui.title || document.title;
-    searchInput.placeholder = ui.searchPlaceholder || searchInput.placeholder;
+    if (searchInput) searchInput.placeholder = ui.searchPlaceholder || '';
 
     // 帶 data-i18n 的文本節點
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -353,15 +353,17 @@
     toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
   }
 
-  // --- 搜索 ---
+  // --- 搜索（導航欄移除搜索框後需空值保護）---
   let searchTimer;
-  searchInput.addEventListener('input', (e) => {
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => {
-      currentSearch = e.target.value.trim().toLowerCase();
-      renderVideos();
-    }, 200);
-  });
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        currentSearch = e.target.value.trim().toLowerCase();
+        renderVideos();
+      }, 200);
+    });
+  }
 
   // --- 播放器關閉事件 ---
   playerClose.addEventListener('click', closePlayer);
@@ -402,6 +404,22 @@
       closePlayer();
     }
   });
+
+  // --- 移動端漢堡菜單（與官網同款） ---
+  const navToggle = document.querySelector('.site-nav .nav-toggle');
+  if (navToggle) {
+    const navLinks = document.querySelector('.site-nav .nav-links');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      navToggle.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        navToggle.classList.remove('active');
+      });
+    });
+  }
 
   // --- 滾動效果 ---
   let scrollTimer;
