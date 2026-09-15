@@ -405,6 +405,27 @@
     }
   });
 
+  // --- 三站鏈接按訪問區域自動切換（海外→GitHub Pages 鏡像，國內→自建服務器） ---
+  (function routeByRegion() {
+    var HOST = location.hostname || '';
+    if (!/(^|\.)github\.io$/i.test(HOST)) return;
+    var MAP = [
+      [/^https?:\/\/heydaygroup\.bydtyr\.com/i, 'https://kinozhao9205.github.io/heyday-site'],
+      [/^https?:\/\/video\.bydtyr\.com/i, 'https://kinozhao9205.github.io/heyday-videos'],
+      [/^https?:\/\/tuiguang\.bydtyr\.com/i, 'https://kinozhao9205.github.io/shengshi-videos']
+    ];
+    document.querySelectorAll('.site-nav a[href]').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!href) return;
+      for (var i = 0; i < MAP.length; i++) {
+        if (MAP[i][0].test(href)) {
+          a.setAttribute('href', href.replace(MAP[i][0], MAP[i][1]).replace(/([^:])\/{2,}/g, '$1/'));
+          break;
+        }
+      }
+    });
+  })();
+
   // --- 移動端漢堡菜單（與官網同款） ---
   const navToggle = document.querySelector('.site-nav .nav-toggle');
   if (navToggle) {
