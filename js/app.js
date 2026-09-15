@@ -408,7 +408,12 @@
   // --- 三站鏈接按訪問區域自動切換（海外→GitHub Pages 鏡像，國內→自建服務器） ---
   (function routeByRegion() {
     var HOST = location.hostname || '';
-    if (!/(^|\.)github\.io$/i.test(HOST)) return;
+    var IS_OVERSEAS = /(^|\.)github\.io$/i.test(HOST);
+    var pref = 'auto';
+    try { pref = localStorage.getItem('heyday_node_pref') || 'auto'; } catch (e) {}
+    if (pref !== 'cn' && pref !== 'os') pref = 'auto';
+    var WANT_OVERSEAS = pref === 'os' ? true : (pref === 'cn' ? false : IS_OVERSEAS);
+    if (!WANT_OVERSEAS) return;
     var MAP = [
       [/^https?:\/\/heydaygroup\.bydtyr\.com/i, 'https://kinozhao9205.github.io/heyday-site'],
       [/^https?:\/\/video\.bydtyr\.com/i, 'https://kinozhao9205.github.io/heyday-videos'],
